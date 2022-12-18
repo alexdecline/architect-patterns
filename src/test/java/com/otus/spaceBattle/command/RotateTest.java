@@ -43,14 +43,6 @@ class RotateTest {
     }
 
     @Test
-    @DisplayName("Test get angular velocity is null")
-    void test3() {
-        when(rotatable.getAngularVelocity()).thenReturn(null);
-
-        assertThrows(RuntimeException.class, () -> rotate.execute());
-    }
-
-    @Test
     @DisplayName("Test get direction is null")
     void test4() {
         when(rotatable.getDirection()).thenReturn(null);
