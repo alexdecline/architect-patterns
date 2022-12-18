@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -20,12 +19,11 @@ class RotateTest {
     @Mock
     private Direction direction;
 
-    @InjectMocks
     private Rotate rotate;
 
     @BeforeEach
     void beforeEach() {
-        when(rotatable.getDirection()).thenReturn(direction);
+        rotate = new Rotate(rotatable);
     }
 
     @Test
@@ -35,9 +33,28 @@ class RotateTest {
     }
 
     @Test
-    @DisplayName("Execute check")
+    @DisplayName("Rotate rotatable check")
     void test2() {
+        when(rotatable.getDirection()).thenReturn(direction);
+        when(direction.next(any(Integer.class))).thenReturn(direction);
         rotate.execute();
-        verify(rotatable.getDirection(), times(1));
+
+        verify(rotatable, times(1)).setDirection(direction);
+    }
+
+    @Test
+    @DisplayName("Test get angular velocity is null")
+    void test3() {
+        when(rotatable.getAngularVelocity()).thenReturn(null);
+
+        assertThrows(RuntimeException.class, () -> rotate.execute());
+    }
+
+    @Test
+    @DisplayName("Test get direction is null")
+    void test4() {
+        when(rotatable.getDirection()).thenReturn(null);
+
+        assertThrows(RuntimeException.class, () -> rotate.execute());
     }
 }
