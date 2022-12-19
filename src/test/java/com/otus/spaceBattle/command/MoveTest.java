@@ -1,12 +1,10 @@
-package com.otus.spaceBattle.comand;
+package com.otus.spaceBattle.command;
 
 import static com.otus.spaceBattle.TestData.END_POSITION;
 import static com.otus.spaceBattle.TestData.START_POSITION;
 import static com.otus.spaceBattle.TestData.VELOCITY;
 
-import com.otus.spaceBattle.TestData;
 import com.otus.spaceBattle.action.Movable;
-import com.otus.spaceBattle.dto.Coords;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.otus.spaceBattle.comand;
+package com.otus.spaceBattle.command;
 
 import com.otus.spaceBattle.action.Movable;
 import com.otus.spaceBattle.dto.Coords;
