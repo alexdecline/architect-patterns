@@ -59,4 +59,15 @@ public class ChangeSpeedTest {
         Assertions.assertThrows(RuntimeException.class, () -> speedChanger.execute());
     }
 
+    @Test
+    void executeShouldThrowExceptionIfSetSpeedNotAvailable() {
+        //given
+        Mockito.when(speedChangeable.getSpeed()).thenReturn(STARTED_SPEED);
+        Mockito.when(speedChangeable.getSpeedChange()).thenReturn(CHANGED_SPEED);
+        Mockito.doThrow(new RuntimeException()).when(speedChangeable).setSpeed(Mockito.anyInt());
+
+        //when - then exception
+        Assertions.assertThrows(RuntimeException.class, () -> speedChanger.execute());
+    }
+
 }
