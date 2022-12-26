@@ -1,17 +1,17 @@
 package com.otus.spaceBattle.command;
 
-import com.otus.spaceBattle.action.RotationSpeedChangeable;
+import com.otus.spaceBattle.action.RotationVelocityChangeable;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class RotationSpeedChange {
+public class RotationVelocityChange {
 
-    private final @NonNull RotationSpeedChangeable rotationSpeedChangeable;
+    private final @NonNull RotationVelocityChangeable rotationVelocityChangeable;
 
     public void execute() {
-        int angularVelocity = rotationSpeedChangeable.getAngularSpeed();
-        int angularVelocityChange = rotationSpeedChangeable.getAngularSpeedChange();
-        rotationSpeedChangeable.setAngularVelocity(angularVelocity + angularVelocityChange);
+        int angularVelocity = rotationVelocityChangeable.getAngularVelocity();
+        int angularVelocityChange = rotationVelocityChangeable.getAngularVelocityChange();
+        rotationVelocityChangeable.setAngularVelocity(angularVelocity + angularVelocityChange);
     }
 }

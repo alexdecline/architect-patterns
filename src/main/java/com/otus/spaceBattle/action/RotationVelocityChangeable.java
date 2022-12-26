@@ -1,10 +1,10 @@
 package com.otus.spaceBattle.action;
 
-public interface RotationSpeedChangeable {
+public interface RotationVelocityChangeable {
 
-    int getAngularSpeed();
+    int getAngularVelocity();
 
-    int getAngularSpeedChange();
+    int getAngularVelocityChange();
 
     void setAngularVelocity(int newVelocity);
 }
