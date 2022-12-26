@@ -1,12 +1,13 @@
 package com.otus.spaceBattle.command;
 
 import com.otus.spaceBattle.action.SpeedChangeable;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class SpeedChanger {
 
-    private final SpeedChangeable speedChangeable;
+    private final @NonNull SpeedChangeable speedChangeable;
 
     public void execute() {
         int speed = speedChangeable.getSpeed();

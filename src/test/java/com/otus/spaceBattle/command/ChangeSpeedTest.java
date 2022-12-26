@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.otus.spaceBattle.TestData.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class ChangeSpeedTest {
@@ -22,6 +23,11 @@ public class ChangeSpeedTest {
     @BeforeEach
     public void setup() {
         speedChanger = new SpeedChanger(speedChangeable);
+    }
+
+    @Test
+    void shouldThrowExceptionIfSpeedChangeableNull() {
+        assertThrows(NullPointerException.class, () -> new SpeedChanger(null));
     }
 
     @Test
