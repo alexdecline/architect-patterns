@@ -1,12 +1,12 @@
 package com.otus.spaceBattle.exceptionHandler;
 
 import com.otus.spaceBattle.command.Command;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -23,16 +23,16 @@ class MainExceptionHandlerTest {
     Command executedCommand = Mockito.mock(Command.class);
     LinkedList<Command> queue = new LinkedList<>();
 
-    Map<AbstractMap.SimpleEntry<Class<? extends Exception>, Class<? extends Command>>, CommandExceptionHandler> map =
+    Map<Pair<Class<? extends Exception>, Class<? extends Command>>, CommandExceptionHandler> map =
             new HashMap<>();
     CommandExceptionHandler h1 = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(exception.getClass(), executedCommand.getClass()), h1);
+    map.put(Pair.of(exception.getClass(), executedCommand.getClass()), h1);
     CommandExceptionHandler h2 = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(null, executedCommand.getClass()), h2);
+    map.put(Pair.of(null, executedCommand.getClass()), h2);
     CommandExceptionHandler h3 = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(exception.getClass(), null), h3);
+    map.put(Pair.of(exception.getClass(), null), h3);
     CommandExceptionHandler extraHandler = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(IndexOutOfBoundsException.class, executedCommand.getClass()), extraHandler);
+    map.put(Pair.of(IndexOutOfBoundsException.class, executedCommand.getClass()), extraHandler);
 
     MainExceptionHandler mainHandler = new MainExceptionHandler(map);
 
@@ -54,14 +54,14 @@ class MainExceptionHandlerTest {
     Command executedCommand = Mockito.mock(Command.class);
     LinkedList<Command> queue = new LinkedList<>();
 
-    Map<AbstractMap.SimpleEntry<Class<? extends Exception>, Class<? extends Command>>, CommandExceptionHandler> map =
+    Map<Pair<Class<? extends Exception>, Class<? extends Command>>, CommandExceptionHandler> map =
             new HashMap<>();
     CommandExceptionHandler h1 = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(ClassCastException.class, executedCommand.getClass()), h1);
+    map.put(Pair.of(ClassCastException.class, executedCommand.getClass()), h1);
     CommandExceptionHandler h2 = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(null, Command.class), h2);
+    map.put(Pair.of(null, Command.class), h2);
     CommandExceptionHandler h3 = Mockito.mock(CommandExceptionHandler.class);
-    map.put(new AbstractMap.SimpleEntry<>(ClassCastException.class, null), h3);
+    map.put(Pair.of(ClassCastException.class, null), h3);
 
     MainExceptionHandler mainHandler = new MainExceptionHandler(map);
 

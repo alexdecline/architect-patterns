@@ -9,13 +9,14 @@ import java.util.stream.Stream;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.tuple.Pair;
 
 @RequiredArgsConstructor
 public class MainExceptionHandler {
 
     @NonNull
     private final Map<
-            SimpleEntry<Class<? extends Exception>, Class<? extends Command>>,
+            Pair<Class<? extends Exception>, Class<? extends Command>>,
             CommandExceptionHandler
             > exceptionAndCommand2Handler;
 
