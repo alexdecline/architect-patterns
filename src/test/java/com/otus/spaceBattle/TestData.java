@@ -16,5 +16,4 @@ public class TestData {
   public static final int CHANGED_SPEED = -3;
   public static final int FINAL_SPEED = 7;
 
-
 }
