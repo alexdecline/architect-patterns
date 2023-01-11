@@ -1,6 +1,7 @@
 package com.otus.spaceBattle.command;
 
 import com.otus.spaceBattle.action.RotationVelocityChangeable;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,5 +37,21 @@ public class ChangeAngularVelocityTest {
 
         Mockito.verify(rotationVelocityChangeable).setAngularVelocity(Mockito.eq(FINAL_ROTATION_VELOCITY));
 
+    }
+
+    @Test
+    void execute_shouldThrowException_ifGetAngularVelocity() {
+
+        Mockito.when(rotationVelocityChangeable.getAngularVelocity()).thenThrow(RuntimeException.class);
+
+        Assertions.assertThrows(RuntimeException.class, () -> rotationVelocityChange.execute());
+    }
+
+    @Test
+    void execute_shouldThrowException_ifGetAngularVelocityChange() {
+
+        Mockito.when(rotationVelocityChangeable.getAngularVelocityChange()).thenThrow(RuntimeException.class);
+
+        Assertions.assertThrows(RuntimeException.class, () -> rotationVelocityChange.execute());
     }
 }
