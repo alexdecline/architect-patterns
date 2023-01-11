@@ -1,7 +1,7 @@
 package com.otus.spaceBattle.command;
 
 import com.otus.spaceBattle.action.FuelBurnable;
-import com.otus.spaceBattle.exception.NotEnoughFuelLevelException;
+import com.otus.spaceBattle.exception.CommandException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,7 +44,7 @@ class BurnFuelCommandTest {
         Mockito.when(fuelBurnable.getConsumeSpeed()).thenReturn(CONSUME_FUEL);
 
         //when-then
-        Assertions.assertThrows(NotEnoughFuelLevelException.class, () -> consume.execute());
+        Assertions.assertThrows(CommandException.class, () -> consume.execute());
     }
 
     @Test

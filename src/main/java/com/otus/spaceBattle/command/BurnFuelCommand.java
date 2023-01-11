@@ -1,7 +1,7 @@
 package com.otus.spaceBattle.command;
 
 import com.otus.spaceBattle.action.FuelBurnable;
-import com.otus.spaceBattle.exception.NotEnoughFuelLevelException;
+import com.otus.spaceBattle.exception.CommandException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +15,7 @@ public class BurnFuelCommand implements Command {
     public void execute() {
         int nevValue = fuelBurnable.getFuelLevel() - fuelBurnable.getConsumeSpeed();
         if (nevValue < 0) {
-            throw new NotEnoughFuelLevelException();
+            throw new CommandException();
         }
         fuelBurnable.setFuelLevel(nevValue);
     }

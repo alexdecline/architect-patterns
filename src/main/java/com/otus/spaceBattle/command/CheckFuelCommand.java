@@ -1,7 +1,7 @@
 package com.otus.spaceBattle.command;
 
 import com.otus.spaceBattle.action.FuelBurnable;
-import com.otus.spaceBattle.exception.NotEnoughFuelLevelException;
+import com.otus.spaceBattle.exception.CommandException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ public class CheckFuelCommand implements Command {
         int consumeSpeed = fuelBurnable.getConsumeSpeed();
 
         if (fuelLevel < consumeSpeed) {
-            throw new NotEnoughFuelLevelException();
+            throw new CommandException();
         }
 
     }
