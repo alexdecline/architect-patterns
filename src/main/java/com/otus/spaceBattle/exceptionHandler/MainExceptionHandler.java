@@ -3,7 +3,6 @@ package com.otus.spaceBattle.exceptionHandler;
 import com.otus.spaceBattle.command.Command;
 
 import java.util.*;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,17 +24,10 @@ public class MainExceptionHandler {
         Class<? extends Exception> eClass = exception.getClass();
         Class<? extends Command> cClass = executedCommand.getClass();
 
-        SimpleEntry<Class<? extends Exception>, Class<? extends Command>> byExceptionAndCommandKey =
-                new SimpleEntry<>(eClass, cClass);
-        SimpleEntry<Class<? extends Exception>, Class<? extends Command>> byCommandKey =
-                new SimpleEntry<>(null, cClass);
-        SimpleEntry<Class<? extends Exception>, Class<? extends Command>> byExceptionKey =
-                new SimpleEntry<>(eClass, null);
-
         List<CommandExceptionHandler> existHandlers = Stream.of(
-                        exceptionAndCommand2Handler.get(byExceptionAndCommandKey),
-                        exceptionAndCommand2Handler.get(byCommandKey),
-                        exceptionAndCommand2Handler.get(byExceptionKey)
+                        exceptionAndCommand2Handler.get(Pair.of(eClass, cClass)),
+                        exceptionAndCommand2Handler.get(Pair.of(null, cClass)),
+                        exceptionAndCommand2Handler.get(Pair.of(eClass, null))
                 )
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
