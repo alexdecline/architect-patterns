@@ -17,6 +17,7 @@ class LogExceptionCommandTest {
 
     @Test
     void execute() {
+        System.setProperty("logback.configurationFile", "logbackLogExceptionComandConfig.xml");
         Logger logger = (Logger) LoggerFactory.getLogger(LogExceptionCommand.class);
 
         ListAppender<ILoggingEvent> listAppender = new ListAppender<>();

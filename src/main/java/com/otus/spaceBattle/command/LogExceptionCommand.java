@@ -1,11 +1,13 @@
 package com.otus.spaceBattle.command;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
 public class LogExceptionCommand implements Command {
+    @NonNull
     private final Exception exceptionFromCommand;
 
     @Override
