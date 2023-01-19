@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 public class LongMove implements Command {
     @NonNull
     private final Move move;
-    @NonNull
     private final int iteration;
     @NonNull
     private final Queue<Command> commandQueue;

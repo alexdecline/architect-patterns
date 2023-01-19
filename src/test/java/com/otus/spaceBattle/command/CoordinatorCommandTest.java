@@ -1,19 +1,20 @@
 package com.otus.spaceBattle.command;
 
+import com.otus.spaceBattle.exception.CommandException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Queue;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CoordinatorCommandTest {
-    @Mock
     private Queue<TransactionParticipant> queue;
     private TransactionCoordinatorCommand command;
 
@@ -24,10 +25,7 @@ class CoordinatorCommandTest {
     void beforeEach() {
         participantMove = Mockito.mock(TransactionParticipant.class);
         participantBernFuel = Mockito.mock(TransactionParticipant.class);
-        command = new TransactionCoordinatorCommand(queue);
-
-        when(queue.poll()).thenReturn(participantMove)
-                .thenReturn(participantBernFuel);
+        command = new TransactionCoordinatorCommand(List.of(participantMove, participantBernFuel));
     }
 
     @Test
@@ -46,7 +44,7 @@ class CoordinatorCommandTest {
         when(participantMove.isReady()).thenReturn(true);
         when(participantBernFuel.isReady()).thenReturn(false);
 
-        command.execute();
+        assertThrows(CommandException.class, () -> command.execute());
 
         verify(participantMove, never()).execute();
         verify(participantBernFuel, never()).execute();
@@ -56,10 +54,12 @@ class CoordinatorCommandTest {
     void execute_rollBackExecute() {
         when(participantMove.isReady()).thenReturn(true);
         when(participantBernFuel.isReady()).thenReturn(true);
-        doThrow(new Exception()).when(participantMove).execute();
+
+        doThrow(new RuntimeException()).when(participantBernFuel).execute();
 
         command.execute();
 
+        verify(participantMove).execute();
         verify(participantMove).rollback();
         verify(participantBernFuel).rollback();
     }
