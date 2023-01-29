@@ -16,4 +16,8 @@ public class TestData {
   public static final int FINAL_ROTATION_VELOCITY = 15;
 
   public final static String ERROR_MSG = "Test";
+  public static final int STARTED_ROTATION_VELOCITY = 10;
+  public static final int CHANGE_ROTATION_VELOCITY = 5;
+  public static final int FINAL_ROTATION_VELOCITY = 15;
+
 }
